@@ -30,12 +30,13 @@ double mochilaGulosa(std::vector<Item> &itens, int capacidade)
             valorTotal += item.valor;
             pesoAtual += item.peso;
         }
-        else
-        {
-            double proporcao = static_cast<double>(capacidade - pesoAtual) / item.peso;
-            valorTotal += proporcao * item.valor;
-            break;
-        }
+        // verifica a proporcao do item atual que pode ser colocado na mochila
+        // else
+        // {
+        //     double proporcao = static_cast<double>(capacidade - pesoAtual) / item.peso;
+        //     valorTotal += proporcao * item.valor;
+        //     break;
+        // }
     }
 
     return valorTotal;
