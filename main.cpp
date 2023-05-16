@@ -16,11 +16,18 @@ int main()
     }
 
     // Lê e imprime o conteúdo do arquivo linha por linha
-    std::string line;
-    while (std::getline(inputFile, line))
-    {
-        std::cout << line << std::endl;
-    }
+    // std::string line;
+    // while (std::getline(inputFile, line))
+    // {
+    //     std::cout << line << std::endl;
+    // }
+
+    int numLinhasProducao, numProdutos;
+
+    inputFile >> numLinhasProducao >> numProdutos;
+
+    std::cout << "Numero de linhas de producao: " << numLinhasProducao << std::endl;
+    std::cout << "Numero de produtos: " << numProdutos << std::endl;
 
     // Fecha o arquivo
     inputFile.close();
