@@ -1,5 +1,4 @@
 #include <iostream>
-#include <fstream>
 #include <vector>
 #include <algorithm>
 
@@ -8,6 +7,8 @@ struct Edge
     int source;
     int destination;
     int weight;
+
+    Edge(int src, int dst, int w) : source(src), destination(dst), weight(w) {}
 };
 
 class DisjointSet
@@ -62,6 +63,7 @@ public:
         }
     }
 };
+
 bool compareEdges(const Edge &edge1, const Edge &edge2)
 {
     return edge1.weight < edge2.weight;
@@ -91,55 +93,29 @@ std::vector<Edge> kruskalMST(const std::vector<Edge> &edges, int numVertices)
 
     return mst;
 }
+
 int main()
 {
-    std::ifstream inputFile("guloso.txt"); // Nome do arquivo de entrada
+    int numVertices = 6;
+    std::vector<Edge> edges = {
+        {0, 1, 1},
+        {0, 2, 2},
+        {0, 3, 3},
+        {1, 2, 5},
+        {1, 4, 7},
+        {2, 3, 4},
+        {2, 4, 8},
+        {3, 4, 6},
+        {3, 5, 2},
+        {4, 5, 1}};
 
-    // Verifica se o arquivo foi aberto corretamente
-    if (!inputFile.is_open())
-    {
-        std::cout << "Erro ao abrir o arquivo." << std::endl;
-        return 1;
-    }
+    std::vector<Edge> mst = kruskalMST(edges, numVertices);
 
-    // Lê a matriz do arquivo
-    std::vector<Edge> edges;
-    int valor;
-    int numLinhasProducao, numProdutos;
-
-    inputFile >> numLinhasProducao >> numProdutos;
-
-    for (int i = 0; i < numProdutos; i++)
-    {
-        for (int j = 0; j < numProdutos; j++)
-        {
-            inputFile >> valor;
-            if (valor != 0)
-            {
-                Edge edge;
-                edge.source = i;
-                edge.destination = j;
-                edge.weight = valor;
-                edges.push_back(edge);
-            }
-        }
-    }
-
-    inputFile.close();
-
-    // Ordena os edges em ordem crescente de peso
-    std::vector<Edge> mst = kruskalMST(edges, numProdutos);
-
-    // Imprime as arestas lidas
-    // for (const auto &edge : edges)
-    // {
-    //     std::cout << "Origem: " << edge.source + 1 << ", Destino: " << edge.destination + 1 << ", Peso: " << edge.weight << std::endl;
-    // }
-
+    // Imprime a árvore geradora mínima (MST)
     std::cout << "Arestas da MST:" << std::endl;
     for (const auto &edge : mst)
     {
-        std::cout << edge.source + 1 << " - " << edge.destination + 1 << " : " << edge.weight << std::endl;
+        std::cout << edge.source << " - " << edge.destination << " : " << edge.weight << std::endl;
     }
 
     return 0;

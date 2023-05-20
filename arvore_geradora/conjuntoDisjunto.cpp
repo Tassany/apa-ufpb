@@ -1,83 +1,70 @@
 #include <iostream>
 #include <vector>
 
-using namespace std;
-
 class DisjointSet
 {
 private:
-    vector<int> parent;
-    vector<int> rank;
+    std::vector<int> parent;
+    std::vector<int> rank;
 
 public:
-    // Constructor
     DisjointSet(int size)
     {
         parent.resize(size);
         rank.resize(size, 0);
 
-        // Initialize each element as a separate set
         for (int i = 0; i < size; i++)
         {
             parent[i] = i;
         }
     }
 
-    // Find the root of the set to which the element belongs
-    int find(int element)
+    int find(int x)
     {
-        if (parent[element] != element)
+        if (parent[x] != x)
         {
-            // Path compression: make the element directly point to the root
-            parent[element] = find(parent[element]);
+            parent[x] = find(parent[x]);
         }
-        return parent[element];
+        return parent[x];
     }
 
-    // Union two sets by rank (union by rank)
-    void unionSets(int set1, int set2)
+    void unite(int x, int y)
     {
-        int root1 = find(set1);
-        int root2 = find(set2);
+        int rootX = find(x);
+        int rootY = find(y);
 
-        if (root1 != root2)
+        if (rootX == rootY)
         {
-            // Attach the smaller rank tree under the root of the higher rank tree
-            if (rank[root1] < rank[root2])
-            {
-                parent[root1] = root2;
-            }
-            else if (rank[root1] > rank[root2])
-            {
-                parent[root2] = root1;
-            }
-            else
-            {
-                // If ranks are the same, make one as the root and increment its rank by 1
-                parent[root2] = root1;
-                rank[root1]++;
-            }
+            return;
+        }
+
+        if (rank[rootX] < rank[rootY])
+        {
+            parent[rootX] = rootY;
+        }
+        else if (rank[rootX] > rank[rootY])
+        {
+            parent[rootY] = rootX;
+        }
+        else
+        {
+            parent[rootY] = rootX;
+            rank[rootX]++;
         }
     }
 };
 
 int main()
 {
-    int size = 10;
+    DisjointSet ds(5);
 
-    DisjointSet ds(size);
+    ds.unite(0, 1);
+    ds.unite(2, 3);
+    ds.unite(3, 4);
 
-    // Perform some operations on the disjoint set
-    ds.unionSets(0, 1);
-    ds.unionSets(2, 3);
-    ds.unionSets(4, 5);
-    ds.unionSets(6, 7);
-    ds.unionSets(7, 8);
-    ds.unionSets(1, 9);
-
-    // Find representatives of some elements
-    cout << "Parent of 4: " << ds.find(4) << endl;
-    cout << "Parent of 6: " << ds.find(6) << endl;
+    std::cout << ds.find(0) << std::endl; // 1
+    std::cout << ds.find(2) << std::endl; // 4
+    std::cout << ds.find(4) << std::endl; // 4
 
     return 0;
 }
