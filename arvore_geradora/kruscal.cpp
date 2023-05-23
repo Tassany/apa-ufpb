@@ -69,14 +69,19 @@ bool compareEdges(const Edge &edge1, const Edge &edge2)
     return edge1.weight < edge2.weight;
 }
 
-std::vector<Edge> kruskalMST(const std::vector<Edge> &edges, int numVertices)
+std::vector<std::vector<Edge>> kruskalMST(const std::vector<Edge> &edges, int numVertices)
 {
-    std::vector<Edge> mst;
+    std::vector<std::vector<Edge>> solutions;
     DisjointSet ds(numVertices);
 
     // Ordena as arestas pelo peso em ordem crescente
     std::vector<Edge> sortedEdges = edges;
     std::sort(sortedEdges.begin(), sortedEdges.end(), compareEdges);
+
+    int numNodes = 0;
+    int currentSolution = 0;
+
+    solutions.push_back(std::vector<Edge>());
 
     for (const auto &edge : sortedEdges)
     {
@@ -86,36 +91,51 @@ std::vector<Edge> kruskalMST(const std::vector<Edge> &edges, int numVertices)
         // Verifica se a aresta forma um ciclo ou se a origem ou destino já foram utilizados
         if (sourceRoot != destRoot && sourceRoot != edge.destination && destRoot != edge.source)
         {
-            mst.push_back(edge);
+            solutions[currentSolution].push_back(edge);
             ds.unite(sourceRoot, destRoot);
+            numNodes++;
+
+            // Verifica se a solução atual atingiu a metade do número de vértices
+            if (numNodes == numVertices / 2 && currentSolution < 1)
+            {
+                currentSolution++;
+                solutions.push_back(std::vector<Edge>());
+                numNodes = 0;
+            }
         }
     }
 
-    return mst;
+    return solutions;
 }
 
 int main()
 {
-    int numVertices = 6;
+    int numVertices = 8;
     std::vector<Edge> edges = {
-        {0, 1, 1},
+        {0, 1, 4},
         {0, 2, 2},
-        {0, 3, 3},
-        {1, 2, 5},
-        {1, 4, 7},
-        {2, 3, 4},
-        {2, 4, 8},
-        {3, 4, 6},
-        {3, 5, 2},
-        {4, 5, 1}};
+        {0, 3, 1},
+        {1, 2, 3},
+        {1, 4, 6},
+        {2, 3, 2},
+        {2, 5, 5},
+        {3, 6, 4},
+        {4, 5, 7},
+        {4, 7, 3},
+        {5, 6, 1},
+        {5, 7, 2}};
 
-    std::vector<Edge> mst = kruskalMST(edges, numVertices);
+    std::vector<std::vector<Edge>> msts = kruskalMST(edges, numVertices);
 
-    // Imprime a árvore geradora mínima (MST)
-    std::cout << "Arestas da MST:" << std::endl;
-    for (const auto &edge : mst)
+    // Imprime as duas árvores geradoras mínimas (MSTs)
+    for (int i = 0; i < msts.size(); i++)
     {
-        std::cout << edge.source << " - " << edge.destination << " : " << edge.weight << std::endl;
+        std::cout << "Arestas da MST " << (i + 1) << ":" << std::endl;
+        for (const auto &edge : msts[i])
+        {
+            std::cout << edge.source << " - " << edge.destination << " : " << edge.weight << std::endl;
+        }
+        std::cout << "------------------------" << std::endl;
     }
 
     return 0;
