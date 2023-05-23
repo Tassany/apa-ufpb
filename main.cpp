@@ -72,13 +72,14 @@ int main()
     for (int i = 0; i < numProdutos; i++)
     {
         matriz[i] = new int[numProdutos];
+        for (int j = 0; j < numProdutos; j++)
+        {
+            inputFile >> matriz[i][j];
+        }
     }
 
     // Fecha o arquivo
     inputFile.close();
-
-    std::cout << "Numero de linhas de producao: " << numLinhasProducao << std::endl;
-    std::cout << "Numero de produtos: " << numProdutos << std::endl;
 
     // ordenar o array de produtos
     quicksort(produtos, 0, numProdutos - 1);
@@ -88,6 +89,31 @@ int main()
     {
         std::cout << produtos[i] << " ";
     }
+
+    // pegar o menor valor da matriz diferente de zero
+    int menorValor = 0;
+    int linhaMenorValor = 0;
+    int colunaMenorValor = 0;
+
+    for (int i = 0; i < numProdutos; i++)
+    {
+        for (int j = 0; j < numProdutos; j++)
+        {
+            if (matriz[i][j] != 0)
+            {
+                if (menorValor == 0 || matriz[i][j] < menorValor)
+                {
+                    menorValor = matriz[i][j];
+                    linhaMenorValor = i;
+                    colunaMenorValor = j;
+                }
+            }
+        }
+    }
+
+    std::cout << "\nMenor valor da matriz: " << menorValor << std::endl;
+    std::cout << "Linha do menor valor: " << linhaMenorValor << std::endl;
+    std::cout << "Coluna do menor valor: " << colunaMenorValor << std::endl;
 
     return 0;
 }
