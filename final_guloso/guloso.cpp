@@ -27,7 +27,7 @@ int indiceMaiorValor(int *vetor, int tamanho){
 int main()
 {
     int numLinhasProducao, numProdutos;
-    std::ifstream inputFile("guloso.txt"); // Nome do arquivo de entrada
+    std::ifstream inputFile("n500m10_A.txt"); // Nome do arquivo de entrada
 
     // Verifica se o arquivo foi aberto corretamente
     if (!inputFile.is_open())
@@ -41,14 +41,14 @@ int main()
     std::cout << "Numero de linhas de producao "<< numLinhasProducao << std::endl;
     std::cout << "Numero de produto "<< numProdutos << std::endl;
     int solucao[numLinhasProducao] ;
-
-    for (int i = 0; i < numProdutos; i++)
+  
+    for (int i = 0; i < numLinhasProducao; i++)
     {
-         solucao[i] = 0;
+          solucao[i] = 0;
     }
     // ler um array do tamanho do numero de produtos
     int produtos[numProdutos];
-
+    
     for (int i = 0; i < numProdutos; i++)
     {
         inputFile >> produtos[i];
