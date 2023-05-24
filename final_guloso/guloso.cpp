@@ -3,11 +3,9 @@
 #include <vector>
 #include <algorithm>
 
-int indiceMenorValor(int *vetor){
+int indiceMenorValor(int *vetor, int tamanho){
     int menor = 0;
-    int size = sizeof(vetor)/sizeof(int);
-
-    for(int i =0; i < size; i++){
+    for(int i =0; i < tamanho; i++){
         if(vetor[i]<vetor[menor]){
             menor =i;
         }
@@ -15,11 +13,10 @@ int indiceMenorValor(int *vetor){
     return menor;
 }
 
-int indiceMaiorValor(int *vetor){
+int indiceMaiorValor(int *vetor, int tamanho){
     int maior = 0;
-    int size = sizeof(vetor)/sizeof(int);
 
-    for(int i =0; i < size; i++){
+    for(int i =0; i < tamanho; i++){
         if(vetor[i]>vetor[maior]){
             maior =i;
         }
@@ -64,7 +61,7 @@ int main()
         }
         std::cout << std::endl;
     for(int i = 0; i< numProdutos; i++){
-        int indiceFila = indiceMenorValor(solucao);
+        int indiceFila = indiceMenorValor(solucao, numLinhasProducao);
         solucao[indiceFila] += produtos[i];
         std::cout << "Linhas de Producao ";
         for(int i = 0; i< numLinhasProducao; i++){
@@ -72,7 +69,7 @@ int main()
         }
         std::cout << std::endl;
     }
-   int maior = indiceMaiorValor(solucao);
+   int maior = indiceMaiorValor(solucao, numLinhasProducao);
     std::cout << "Solucao " << solucao[maior]<< std::endl; ;
 
     return 0;
