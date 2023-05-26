@@ -219,45 +219,5 @@ int main()
      HorasGastas = linhas[indiceMaiorValor(linhas, numLinhasProducao)];
     std::cout << "Solucao Final  Com  vizinhanca " << HorasGastas << std::endl;
 
-    // for (int i = 0; i < 100; i++)
-    // {
-    //     int solucaoAnterior = solucao[indiceMaiorValor(solucao, numLinhasProducao)];
-
-    //     // Escolhendo aleatoriamente um movimento de vizinhança
-    //     if (rand() % 2 == 0)
-    //         vizinhanca1(solucao, numLinhasProducao);
-    //     else
-    //         vizinhanca2(solucao, numLinhasProducao);
-
-    //     int novaSolucao = solucao[indiceMaiorValor(solucao, numLinhasProducao)];
-
-    //     // Se a nova solução é pior, revertemos a mudança
-    //     if (novaSolucao > solucaoAnterior)
-    //     {
-    //         for (int i = 0; i < numLinhasProducao; i++)
-    //         {
-    //             solucao[i] = 0;
-    //         }
-    //         for (int i = 0; i < numProdutos; i++)
-    //         {
-    //             int indiceFila = indiceMenorValor(solucao, numLinhasProducao);
-    //             solucao[indiceFila] += produtos[i];
-    //         }
-    //     }
-
-    //     // atualize melhorSolucao quando uma melhor solução é encontrada:
-    //     if (novaSolucao < melhorSolucao)
-    //     {
-    //         melhorSolucao = novaSolucao;
-    //     }
-
-    //     std::cout << "Solucao[" << i << "] = " << novaSolucao << ", com movimentos de vizinhanca" << std::endl;
-    // }
-
-    // int maior = indiceMaiorValor(solucao, numLinhasProducao);
-    // std::cout << "Solucao sem movimentos de vizinhanca: " << solucao[maior] << std::endl;
-
-    // std::cout << "Melhor Solucao com movimentos de vizinhanca: " << melhorSolucao << std::endl;
-
     return 0;
 }
