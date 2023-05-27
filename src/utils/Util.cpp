@@ -10,7 +10,7 @@ int Util::gerarNumeroAleatorio(int min, int max)
 
     return dis(gen);
 }
-int Util::indiceMenorValor(int *vetor, int tamanho)
+int Util::indiceMenorValor(std::vector<int> &vetor, int tamanho)
 {
     int menor = 0;
     for (int i = 0; i < tamanho; i++)
@@ -22,7 +22,7 @@ int Util::indiceMenorValor(int *vetor, int tamanho)
     }
     return menor;
 }
-int Util::indiceMaiorValor(int *vetor, int tamanho)
+int Util::indiceMaiorValor(std::vector<int> &vetor, int tamanho)
 {
     int maior = 0;
 

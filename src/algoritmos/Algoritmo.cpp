@@ -5,21 +5,14 @@
 #include "../utils/Util.h"
 #include "../vizinhancas/Vizinhanca.h"
 
-void Algoritmo::guloso(std::vector<std::vector<Vizinhanca::Produto>> &solucao, int *linhas, int numLinhasProducao, int numProdutos, int *matrizProd, int *produtos)
+void Algoritmo::guloso(std::vector<std::vector<Vizinhanca::Produto>> &solucao, std::vector<int> &linhas, int numLinhasProducao, int numProdutos, int *matrizProd, int *produtos)
 {
     Util utils;
     for (int i = 0; i < numLinhasProducao; i++)
     {
         linhas[i] = 0;
     }
-    for (int i = 0; i < numProdutos; i++)
-    {
-        for (int j = 0; j < numProdutos; j++)
-        {
-            std::cout << matrizProd[i * numProdutos + j] << " --> ";
-        }
-        std::cout << std::endl;
-    }
+   
 
     for (int i = 0; i < numProdutos; i++)
     {
@@ -43,7 +36,4 @@ void Algoritmo::guloso(std::vector<std::vector<Vizinhanca::Produto>> &solucao, i
     }
 }
 
-void Algoritmo::vnd(std::vector<std::vector<Vizinhanca::Produto>> &solucao, int *linhas, int numLinhasProducao, int numProdutos, int *matrizProd, int *produtos)
-{
-    
-}
+

@@ -22,9 +22,9 @@ public:
         std::vector<std::vector<Vizinhanca::Produto>> solucaos;
         int linhas[];
     };
-    void guloso(std::vector<std::vector<Vizinhanca::Produto>> &solucao, int *linhas, int numLinhasProducao, int numProdutos, int *matrizProd, int *produtos);
+    void guloso(std::vector<std::vector<Vizinhanca::Produto>> &solucao, std::vector<int> &linhas, int numLinhasProducao, int numProdutos, int *matrizProd, int *produtos);
     
-    void vnd(std::vector<std::vector<Vizinhanca::Produto>> &solucao, int *linhas, int numLinhasProducao, int numProdutos, int *matrizProd, int *produtos);
+    
 };
 
 #endif
