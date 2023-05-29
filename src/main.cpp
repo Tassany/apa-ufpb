@@ -9,7 +9,6 @@
 #include "./algoritmos/Algoritmo.h"
 #include "./metaHeuristica/ILS.h"
 #include "./busca/VND.h"
-#include "./metaHeuristica/ILS.h"
 
 int main()
 {
