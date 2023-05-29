@@ -60,6 +60,7 @@ int main()
 
     int HorasGastas = linhas[utils.indiceMaiorValor(linhas, numLinhasProducao)];
 
+    // Apenas o Guloso - Inicio -----------------------------------------------
     for (int i = 0; i < solucao.size(); i++)
     {
         std::cout << "Linha " << i << " --> ";
@@ -72,6 +73,7 @@ int main()
     }
 
     std::cout << "Solucao Final  Sem Vizinhanca " << HorasGastas << std::endl;
+    // Apenas o Guloso - Fim -------------------------------------------------
 
     // VND - Inicio  ----------------------------------------------------------------
 
