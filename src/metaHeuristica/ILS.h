@@ -1,16 +1,14 @@
-
 #ifndef ILS_H
 #define ILS_H
-#include <iostream>
 #include <vector>
-#include <cstdlib>
-#include <ctime>
-
+#include <algorithm>
+#include "../vizinhancas/Vizinhanca.h"
+#include "../utils/Util.h"
 class ILS
 {
 private:
 public:
-    std::vector<int> buscaLocal(std::vector<std::vector<Vizinhanca::Produto>> &solucao);
+    void run(std::vector<std::vector<Vizinhanca::Produto>> &melhorSolucao, int numIteracoes, std::vector<int> &Melhorlinhas, std::vector<std::vector<Vizinhanca::Produto>> &solucao, std::vector<int> &linhas, int numLinhasProducao, int *matrizProd, int numProdutos);
 };
 
 #endif
