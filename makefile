@@ -1,10 +1,10 @@
 PROJ_NAME=algoritmo
 
 #.hpp files
-HPP_SOURCE=$(wildcard ./src/utils/*.h ./src/vizinhancas/*.h ./src/algoritmos/*.h ./src/busca/*.h)
+HPP_SOURCE=$(wildcard ./src/utils/*.h ./src/vizinhancas/*.h ./src/algoritmos/*.h ./src/busca/*.h ./src/metaHeuristica/*.h)
 
 # .cpp files
-CPP_SOURCE=$(wildcard ./src/*.cpp ./src/utils/*.cpp ./src/vizinhancas/*.cpp ./src/algoritmos/*.cpp ./src/busca/*.cpp)
+CPP_SOURCE=$(wildcard ./src/*.cpp ./src/utils/*.cpp ./src/vizinhancas/*.cpp ./src/algoritmos/*.cpp ./src/busca/*.cpp ./src/metaHeuristica/*.cpp)
 
 
 # Object files
